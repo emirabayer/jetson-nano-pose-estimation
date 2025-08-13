@@ -60,14 +60,13 @@ We will use the `trtexec` command-line tool to convert the ONNX model into optim
 
 <br>
 <br>
-1.  **Benchmark FP32 Precision (Baseline):**
-    This command builds and benchmarks the standard 32-bit floating-point engine.
+
+1. **Benchmark FP32 Precision (Baseline):**
     ```bash
     trtexec --onnx=movenet_lightning.onnx
     ```
 
 2.  **Benchmark FP16 Precision (Optimized):**
-    This command builds and benchmarks the 16-bit floating-point engine, which leverages the Nano's hardware for a significant speed-up.
     ```bash
     trtexec --onnx=movenet_lightning.onnx --fp16
     ```
@@ -88,17 +87,10 @@ At the end of each `trtexec` run, look for the `=== Performance summary ===` sec
 [I] GPU Compute Time: min = 13.1445 ms, max = 23.588 ms, mean = 13.1879 ms, median = 13.1925 ms ...
 ```
 
+<br>
+<br>
+
 * **Latency:** The `median` GPU Compute Time is your raw inference speed in milliseconds (e.g., **13.19 ms**).
 * **FPS:** To calculate the Frames Per Second, use the formula: `FPS = 1000 / median_latency`. (e.g., `1000 / 13.19 = ~75.8 FPS`).
 
 Compare the results from the FP32 and FP16 runs to quantify the performance gain from quantization.
-
----
-
-## Repository Structure
-
-```
-.
-├── movenet_lightning.onnx
-└── README.md
-```
