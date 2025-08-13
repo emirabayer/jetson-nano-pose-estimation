@@ -97,32 +97,10 @@ Compare the results from the FP32 and FP16 runs to quantify the performance gain
 
 
 <br>
-
 <br>
 
-## Appendix: Preparing a Custom Validation Set
+## Decreasing The Size of COCO Validation Set
 
-The `trtexec` tool benchmarks performance using random data. To measure performance on a real-world dataset, you first need a relevant set of images. The included `filter_coco.py` script is a utility to create a smaller, focused dataset from the full COCO 2017 validation set.
-
-### Usage
-
-1.  **Download COCO Data:**
-    * Download the validation images (`val2017.zip`) and annotations (`annotations_trainval2017.zip`) from the [COCO website](https://cocodataset.org/#download).
-2.  **Set Up Folder Structure:**
-    Arrange your files as follows:
-    ```
-    project/
-    ├── annotations/
-    │   └── person_keypoints_val2017.json
-    ├── val2017/
-    │   ├── 000000000139.jpg
-    │   └── ... (all 5000 images)
-    └── filter_coco.py
-    ```
-3.  **Run the Script:**
-    Execute the script from the `project/` directory.
-    ```bash
-    python3 filter_coco.py
-    ```
-This will create a new folder named `val2017_pose_only` containing only the images with person keypoint annotations, which is ideal for realistic benchmarking.
+The `trtexec` tool benchmarks performance using random data. The included `filter_coco.py` script is a utility to create a smaller, focused dataset from the full COCO 2017 validation set.
+Using it on the COCO dataset will create a new folder named `val2017_pose_only` containing only the images with person keypoint annotations, which is ideal for realistic benchmarking.
 
