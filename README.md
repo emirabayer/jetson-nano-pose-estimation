@@ -20,7 +20,7 @@ The goal is to measure the raw inference speed (latency and FPS) of the model af
 
 ## Benchmarking Procedure
 
-### Step 1: Download the Model
+### - Step 1: Download the Model
 
 Download the pre-converted ONNX model from this repository into the terminal.
 
@@ -32,7 +32,7 @@ wget -O movenet_singlepose_lightning.onnx [https://raw.githubusercontent.com/emi
 
 <br>
 
-### Step 2: Maximize Jetson Nano Performance
+### - Step 2: Maximize Jetson Nano Performance
 
 To get stable and reliable benchmark results, you must first lock the Jetson Nano into its maximum performance state.
 
@@ -52,7 +52,7 @@ To get stable and reliable benchmark results, you must first lock the Jetson Nan
 
 <br>
 
-### Step 3: Run the TensorRT Benchmarks
+### - Step 3: Run the TensorRT Benchmarks
 
 We will use the `trtexec` command-line tool to convert the ONNX model into optimized TensorRT engines and measure their performance. This tool is included with JetPack.
 *If you get a `trtexec: command not found` error, run this command first to add it to your PATH:*
@@ -75,7 +75,7 @@ We will use the `trtexec` command-line tool to convert the ONNX model into optim
 
 <br>
 
-### Step 4: Interpret the Results
+### - Step 4: Interpret the Results
 
 At the end of each `trtexec` run, look for the `=== Performance summary ===` section in the output. The most important number for stable performance is the **`median`** latency under **`GPU Compute Time`**.
 
