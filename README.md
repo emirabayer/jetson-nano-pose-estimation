@@ -45,7 +45,6 @@ To get stable and reliable benchmark results, you must first lock the Jetson Nan
     ```bash
     sudo jetson_clocks
     ```
-    Your fan will likely spin up to maximum speed. This is normal.
 
 
 <br>
