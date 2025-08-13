@@ -25,7 +25,7 @@ The goal is to measure the raw inference speed (latency and FPS) of the model af
 Download the pre-converted ONNX model from this repository into the terminal.
 
 ```bash
-wget [https://raw.githubusercontent.com/YourUsername/movenet-jetson-benchmark/main/movenet_lightning.onnx](https://raw.githubusercontent.com/YourUsername/movenet-jetson-benchmark/main/movenet_lightning.onnx)
+wget -O movenet_singlepose_lightning.onnx [https://raw.githubusercontent.com/emirabayer/movenet-jetson-benchmark/main/movenet_singlepose_lightning.onnx](https://raw.githubusercontent.com/emirabayer/movenet-jetson-benchmark/main/movenet_singlepose_lightning.onnx)
 ```
 
 <br>
@@ -63,12 +63,12 @@ We will use the `trtexec` command-line tool to convert the ONNX model into optim
 
 1. **Benchmark FP32 Precision (Baseline):**
     ```bash
-    trtexec --onnx=movenet_lightning.onnx
+    trtexec --onnx=movenet_singlepose_lightning.onnx
     ```
 
 2.  **Benchmark FP16 Precision (Optimized):**
     ```bash
-    trtexec --onnx=movenet_lightning.onnx --fp16
+    trtexec --onnx=movenet_singlepose_lightning.onnx --fp16
     ```
 
 <br>
