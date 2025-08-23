@@ -66,6 +66,7 @@ sudo apt-get install -y python3-pip libopenjp2-7-dev libtiff-dev
 ```
 The second command below adds an environment variable to the terminal's configuration that fixes the low level bug `Illegal instruction (core dumped)` in this version of NumPy on ARM processors.
 ```bash
+# Install the dependencies
 python3 -m pip install numpy==1.19.5 opencv-python-headless==4.5.5.64 pycuda
 echo 'export OPENBLAS_CORETYPE=ARMV8' >> ~/.bashrc && source ~/.bashrc
 ```
