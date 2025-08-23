@@ -40,7 +40,7 @@ The primary focus is on evaluating models optimized with NVIDIA TensorRT, compar
 
 Before cloning this repository, ensure your Jetson Nano 2GB Developer Kit is properly set up. This includes flashing the OS, installing necessary system libraries (like `pip`), and connecting to the internet.
 
-For a fantastic, step-by-step guide from a fellow researcher at AIRLAB, please follow the instructions here:
+For a fantastic, step by step guide from a fellow researcher at AIRLAB, please follow the instructions here:
 **➡[Jetson Nano Setup Guide by Ali Fırat](http://alifirat.xyz/jetson)**
 
 
@@ -70,7 +70,7 @@ pip3 install -r requirements.txt
 The scripts use TensorRT `.engine` files for optimized inference. You need to generate these from `.onnx` files first.
 
 1.  Obtain the `.onnx` models for MoveNet and YOLOv8-Pose.
-2.  Use the `trtexec` command-line tool (included with TensorRT on your Jetson) to convert them. For example:
+2.  Use the `trtexec` command line tool (included with TensorRT on your Jetson) to convert them. For example:
 
 ```bash
 trtexec --onnx=yolov8n-pose.onnx --saveEngine=yolov8n-pose_fp32.engine --fp16
@@ -93,7 +93,7 @@ To generate the exact dataset used:
     * Download the [2017 Train/Val annotations](http://images.cocodataset.org/annotations/annotations_trainval2017.zip) (241MB).
 2.  **Filter the Dataset:**
     * Unzip both files.
-    * We need to create a subset containing only images with single-person keypoint annotations. You can use a script for this.
+    * We need to create a subset containing only images with single person keypoint annotations. You can use a script for this.
     * The `person_keypoints_val2017.json` annotation file will be used to identify the relevant images.
 3.  **Organize Files:**
     * Create a directory named `nano_benchmark_set` inside the `dataset/` folder.
