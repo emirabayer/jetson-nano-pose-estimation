@@ -30,29 +30,48 @@ The primary focus is on evaluating models optimized with NVIDIA TensorRT, compar
 <br>
 
 
-## Repository Structure
+## Setup and Installation
 
-jetson-nano-pose-detection/
-│
-├── benchmarks/
-│   ├── movenet_benchmark.py        # Benchmark script for MoveNet
-│   └── yolov8_pose_benchmark.py    # Benchmark script for YOLOv8-Pose
-│
-├── dataset/
-│   ├── create_dataset.sh           # (Recommended) A script to automate dataset creation
-│   └── README.md                   # Instructions for dataset generation
-│
-├── models/
-│   └── README.md                   # Instructions on where to place .engine files
-│
-├── visualizations_movenet/
-│   └── (Outputs from movenet_benchmark.py will be saved here)
-│
-├── visualizations_yolo/
-│   └── (Outputs from yolov8_pose_benchmark.py will be saved here)
-│
-├── .gitignore
-└── README.md                       # This file
+### Step 0: Initial Jetson Nano Setup
+
+Before cloning this repository, ensure your Jetson Nano 2GB Developer Kit is properly set up. This includes flashing the OS, installing necessary system libraries (like `pip`), and connecting to the internet.
+
+For a fantastic, step-by-step guide from a fellow researcher at AIRLAB, please follow the instructions here:
+**➡️ [Jetson Nano Setup Guide by Ali Fırat](http://alifirat.xyz/jetson)**
+
+### Step 1: Clone This Repository
+
+Open a terminal on your Jetson Nano and clone this repository.
+
+```bash
+git clone [https://github.com/emirabayer/jetson-nano-pose-estimation.git](https://github.com/emirabayer/jetson-nano-pose-estimation.git)
+cd jetson-nano-pose-estimation
+```
+
+### Step 2: Install Dependencies
+
+The benchmark scripts rely on several Python libraries. Ensure you have `pip` installed, then install the required packages. It's recommended to use a virtual environment.
+
+```bash
+sudo apt-get update
+sudo apt-get install -y python3-pip libopenjp2-7-dev libtiff-dev
+
+# Install the dependencies
+pip3 install -r requirements.txt
+```
+
+## Step 3: Prepare the Models
+
+The scripts use TensorRT `.engine` files for optimized inference. You need to generate these from `.onnx` files first.
+
+1.  Obtain the `.onnx` models for MoveNet and YOLOv8-Pose.
+2.  Use the `trtexec` command-line tool (included with TensorRT on your Jetson) to convert them. For example:
+
+```bash
+trtexec --onnx=yolov8n-pose.onnx --saveEngine=yolov8n-pose_fp32.engine --fp16
+```
+    * Use `--fp16` for FP16 precision or `--int8` for INT8 precision if you have a calibration dataset.
+
 
 <br>
 <br>
