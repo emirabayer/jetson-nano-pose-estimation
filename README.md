@@ -41,9 +41,6 @@ Before cloning this repository, ensure your Jetson Nano 2GB Developer Kit is pro
 For a fantastic, step-by-step guide from a fellow researcher at AIRLAB, please follow the instructions here:
 **➡[Jetson Nano Setup Guide by Ali Fırat](http://alifirat.xyz/jetson)**
 
-<br>
-
-<br>
 
 ### Step 1: Clone This Repository
 
@@ -53,9 +50,6 @@ Open a terminal on your Jetson Nano and clone this repository.
 git clone [https://github.com/emirabayer/jetson-nano-pose-estimation.git](https://github.com/emirabayer/jetson-nano-pose-estimation.git)
 cd jetson-nano-pose-estimation
 ```
-
-<br>
-<br>
 
 ### Step 2: Install Dependencies
 
@@ -68,9 +62,6 @@ sudo apt-get install -y python3-pip libopenjp2-7-dev libtiff-dev
 # Install the dependencies
 pip3 install -r requirements.txt
 ```
-
-<br>
-<br>
 
 ## Step 3: Prepare the Models
 
@@ -113,6 +104,7 @@ To generate the exact dataset used:
 
 <br>
 
+
 ## Running the Benchmarks
 
 Once the setup is complete, running the benchmarks is straightforward.
@@ -134,6 +126,7 @@ The scripts will print the average inference time and FPS to the console. Visual
 <br>
 
 <br>
+
 
 ## Monitoring Jetson Nano Performance
 
