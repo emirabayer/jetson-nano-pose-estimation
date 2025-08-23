@@ -18,6 +18,7 @@ The primary focus is on evaluating models optimized with NVIDIA TensorRT, compar
 * DFrom flashing the Jetson Nano to running your first benchmark, all steps are covered.
 
 <br>
+
 <br>
 
 
@@ -27,6 +28,7 @@ The primary focus is on evaluating models optimized with NVIDIA TensorRT, compar
 * **Software:** JetPack 4.6.x (which includes TensorRT 8.2.1 and CUDA 10.2)
 
 <br>
+
 <br>
 
 
@@ -40,6 +42,7 @@ For a fantastic, step-by-step guide from a fellow researcher at AIRLAB, please f
 **➡[Jetson Nano Setup Guide by Ali Fırat](http://alifirat.xyz/jetson)**
 
 <br>
+
 <br>
 
 ### Step 1: Clone This Repository
@@ -83,6 +86,7 @@ Use `--fp16` for FP16 precision or `--int8` for INT8 precision if you have a cal
 
 
 <br>
+
 <br>
 
 
@@ -106,6 +110,7 @@ To generate the exact dataset used:
 *(You should place your detailed script/instructions on how you created the dataset inside the `dataset/README.md` file).*
 
 <br>
+
 <br>
 
 ## Running the Benchmarks
@@ -127,6 +132,7 @@ python3 benchmarks/yolov8_pose_benchmark.py
 The scripts will print the average inference time and FPS to the console. Visualization images, comparing model predictions (red) against ground truth (green), will be saved in the respective `visualizations_*` directories.
 
 <br>
+
 <br>
 
 ## Monitoring Jetson Nano Performance
