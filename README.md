@@ -1,13 +1,26 @@
-# MoveNet Performance Benchmark on Jetson Nano
+# Jetson Nano Pose Estimation
 
-This repository contains the resources and instructions to simulate the performance of the MoveNet Single Pose Lightning model on an NVIDIA Jetson Nano 2GB Developer Kit using the `trtexec` command-line tool of TensorRT.
+This repository provides a comprehensive toolkit for benchmarking and analyzing the performance of deep learning based pose estimation models on the NVIDIA Jetson Nano Developer Kit. Developed as part of research at the METU Informatics Institute's AIRLAB, this suite is designed to be a practical resource for edge AI developers and researchers.
 
-The goal is to measure the raw inference speed (latency and FPS) of the model after optimization with NVIDIA TensorRT.
+The primary focus is on evaluating models optimized with NVIDIA TensorRT, comparing architectures like MoveNet (Single Pose) and YOLOv8n-Pose for speed and accuracy on a standardized dataset.
+
+<br>
+
 
 <br>
 
 
+## Features
+
+* Pre-configured Benchmark Scripts: Ready-to-run Python scripts for evaluating movenet_fp32.engine and yolov8n-pose_fp32.engine.
+* Performance Monitoring: Includes easy-to-use commands to monitor the Jetson Nano's real-time hardware status (temperature, power, clock speeds).
+* Reproducible Dataset: A detailed guide on how to generate the exact subset of the COCO 2017 dataset used for these benchmarks.
+* Modular & Extendable: The structure is designed to easily accommodate new models and benchmark tests.
+* Detailed Setup Guide: From flashing the Jetson Nano to running your first benchmark, all steps are covered.
+
 <br>
+<br>
+
 
 ## Prerequisites
 
