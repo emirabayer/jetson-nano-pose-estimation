@@ -6,17 +6,16 @@ The primary focus is on evaluating models optimized with NVIDIA TensorRT, compar
 
 <br>
 
-
 <br>
 
 
 ## Features
 
-* Pre-configured Benchmark Scripts: Ready-to-run Python scripts for evaluating movenet_fp32.engine and yolov8n-pose_fp32.engine.
-* Performance Monitoring: Includes easy-to-use commands to monitor the Jetson Nano's real-time hardware status (temperature, power, clock speeds).
-* Reproducible Dataset: A detailed guide on how to generate the exact subset of the COCO 2017 dataset used for these benchmarks.
-* Modular & Extendable: The structure is designed to easily accommodate new models and benchmark tests.
-* Detailed Setup Guide: From flashing the Jetson Nano to running your first benchmark, all steps are covered.
+* Ready to run Python scripts for evaluating _.engine_ files for MoveNet (Single Pose) and Yolov8n-Pose.
+* Includes easy to use commands to monitor the Jetson Nano's real time hardware status (temperature, power, clock speeds).
+* A detailed guide on how to generate the exact subset of the COCO 2017 dataset used for these benchmarks.
+* The structure is designed to easily accommodate new models and benchmark tests.
+* DFrom flashing the Jetson Nano to running your first benchmark, all steps are covered.
 
 <br>
 <br>
@@ -26,6 +25,34 @@ The primary focus is on evaluating models optimized with NVIDIA TensorRT, compar
 
 * **Hardware:** NVIDIA Jetson Nano 2GB Developer Kit
 * **Software:** JetPack 4.6.x (which includes TensorRT 8.2.1 and CUDA 10.2)
+
+<br>
+<br>
+
+
+## Repository Structure
+
+jetson-nano-pose-detection/
+│
+├── benchmarks/
+│   ├── movenet_benchmark.py        # Benchmark script for MoveNet
+│   └── yolov8_pose_benchmark.py    # Benchmark script for YOLOv8-Pose
+│
+├── dataset/
+│   ├── create_dataset.sh           # (Recommended) A script to automate dataset creation
+│   └── README.md                   # Instructions for dataset generation
+│
+├── models/
+│   └── README.md                   # Instructions on where to place .engine files
+│
+├── visualizations_movenet/
+│   └── (Outputs from movenet_benchmark.py will be saved here)
+│
+├── visualizations_yolo/
+│   └── (Outputs from yolov8_pose_benchmark.py will be saved here)
+│
+├── .gitignore
+└── README.md                       # This file
 
 <br>
 <br>
