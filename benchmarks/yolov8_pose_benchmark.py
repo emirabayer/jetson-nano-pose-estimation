@@ -11,11 +11,10 @@ from math import sqrt
 # --- 1. CONFIGURATION ---
 IMAGE_DIR = './nano_benchmark_set'
 ANNOTATION_FILE = 'person_keypoints_val2017.json'
-MODEL_PATH = 'yolov8n-pose_fp32.engine' # Test edilecek YOLOv8 .engine dosyası
-VISUALIZATION_DIR = './visualizations_yolo' # Görsel çıktıların kaydedileceği klasör
-IMAGES_TO_VISUALIZE = 5 # Kaydedilecek görsel sayısı
+MODEL_PATH = 'yolov8n-pose_fp32.engine'
+VISUALIZATION_DIR = './visualizations_yolo'
+IMAGES_TO_VISUALIZE = 5
 
-# YOLOv8n-pose'un standart giriş boyutu
 INPUT_HEIGHT = 640
 INPUT_WIDTH = 640
 
@@ -177,10 +176,9 @@ if __name__ == '__main__':
                     total_error += (total_normalized_dist / visible_keypoints_count)
                     image_count_error += 1
 
-                # --- GÖRSELLEŞTİRME KISMI ---
                 if visualized_count < IMAGES_TO_VISUALIZE:
-                    vis_image = draw_keypoints(original_image.copy(), gt_keypoints_for_drawing, (0, 255, 0)) # Yeşil = Gerçek
-                    vis_image = draw_keypoints(vis_image, predicted_keypoints, (0, 0, 255))      # Kırmızı = Tahmin
+                    vis_image = draw_keypoints(original_image.copy(), gt_keypoints_for_drawing, (0, 255, 0))
+                    vis_image = draw_keypoints(vis_image, predicted_keypoints, (0, 0, 255))
                     
                     save_path = os.path.join(VISUALIZATION_DIR, f"yolo_result_{filename}")
                     cv2.imwrite(save_path, vis_image)
@@ -203,3 +201,4 @@ if __name__ == '__main__':
         print(f"Average Normalized Error (on successful images): {avg_error:.4f}")
     else:
         print("No images were processed.")
+
