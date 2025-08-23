@@ -11,16 +11,16 @@ from math import sqrt
 # --- 1. CONFIGURATION ---
 IMAGE_DIR = './nano_benchmark_set'
 ANNOTATION_FILE = 'person_keypoints_val2017.json'
-MODEL_PATH = 'movenet_fp32.engine' # Test edilecek .engine dosyası
-VISUALIZATION_DIR = './visualizations' # Görsel çıktıların kaydedileceği klasör
-IMAGES_TO_VISUALIZE = 5 # Kaydedilecek görsel sayısı
+MODEL_PATH = 'movenet_fp32.engine'
+VISUALIZATION_DIR = './visualizations'
+IMAGES_TO_VISUALIZE = 5
 
 INPUT_HEIGHT = 192
 INPUT_WIDTH = 192
 
 # --- 2. TENSORRT INFERENCE CLASS ---
 class TRTInference:
-    # ... (Bu sınıf öncekiyle aynı, değişiklik yok) ...
+    
     def __init__(self, engine_path):
         self.logger = trt.Logger(trt.Logger.WARNING)
         with open(engine_path, "rb") as f, trt.Runtime(self.logger) as runtime:
@@ -48,7 +48,6 @@ class TRTInference:
 
 # --- 3. HELPER FUNCTIONS ---
 def preprocess_image(img_path):
-    # ... (Bu fonksiyon öncekiyle aynı, değişiklik yok) ...
     img = cv2.imread(img_path)
     if img is None: return None, None, 0, 0, 0, 0, 0, 0
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -70,7 +69,7 @@ def draw_keypoints(image, keypoints, color):
     """Verilen koordinatları resmin üzerine çizer."""
     for i in range(17):
         x, y = keypoints[i]
-        if x > 0 and y > 0: # Sadece geçerli koordinatları çiz
+        if x > 0 and y > 0:
             cv2.circle(image, (int(x), int(y)), 5, color, -1)
     return image
 
@@ -127,7 +126,6 @@ if __name__ == '__main__':
         image_count_speed += 1
         
         try:
-            # ... (Hata hesaplama kısmı öncekiyle aynı) ...
             if outputs.ndim == 4 and outputs.shape[1] == 1:
                 outputs = np.squeeze(outputs, axis=1)
             predicted_keypoints = outputs
@@ -145,7 +143,6 @@ if __name__ == '__main__':
                 total_normalized_dist = 0
                 visible_keypoints_count = 0
                 
-                # Görselleştirme için koordinat listeleri
                 gt_coords_for_drawing = []
                 pred_coords_for_drawing = []
 
@@ -164,22 +161,20 @@ if __name__ == '__main__':
                             total_normalized_dist += (distance / bbox_scale)
                         visible_keypoints_count += 1
                     else:
-                        gt_coords_for_drawing.append((0,0)) # Görünmeyen noktalar için boş koordinat
+                        gt_coords_for_drawing.append((0,0))
                 
                 if visible_keypoints_count > 0:
                     total_error += (total_normalized_dist / visible_keypoints_count)
                     image_count_error += 1
-
-                # --- GÖRSELLEŞTİRME KISMI ---
+                    
                 if visualized_count < IMAGES_TO_VISUALIZE:
-                    vis_image = draw_keypoints(original_image.copy(), gt_coords_for_drawing, (0, 255, 0)) # Yeşil = Gerçek
-                    vis_image = draw_keypoints(vis_image, pred_coords_for_drawing, (0, 0, 255))      # Kırmızı = Tahmin
+                    vis_image = draw_keypoints(original_image.copy(), gt_coords_for_drawing, (0, 255, 0))
+                    vis_image = draw_keypoints(vis_image, pred_coords_for_drawing, (0, 0, 255))
                     
                     save_path = os.path.join(VISUALIZATION_DIR, f"result_{filename}")
                     cv2.imwrite(save_path, vis_image)
                     visualized_count += 1
                     print(f"Saved visualization to {save_path}")
-                # ---
 
         except Exception:
             pass
@@ -200,3 +195,4 @@ if __name__ == '__main__':
         print(f"Average Normalized Error (on successful images): {avg_error:.4f}")
     else:
         print("No images were processed. Check image paths.")
+
