@@ -167,6 +167,5 @@ sudo cat /sys/kernel/debug/clk/gpcclk/clk_rate
 
 ## Appendix: Decreasing The Size of COCO Validation Set
 
-In order to work with the images in the COCO dataset with pose keypoints already annotated, the official dataset needs to be shrinked.
-will create a new folder named `val2017_pose_only` containing only the images with person keypoint annotations.
+To shrink the COCO dataset down to only images with person keypoint annotations, run the `filter_coco.py` script. It will create a new folder named `val2017_pose_only` containing just the filtered images.
 
