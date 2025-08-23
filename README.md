@@ -8,6 +8,8 @@ The primary focus is on evaluating models optimized with NVIDIA TensorRT, compar
 
 <br>
 
+![result_000000000785](https://github.com/user-attachments/assets/cfa74320-eb4b-47fc-b414-72d6bfbe694a)
+
 
 ## Features
 
@@ -32,7 +34,7 @@ The primary focus is on evaluating models optimized with NVIDIA TensorRT, compar
 <br>
 
 
-## Setup and Installation
+## 🛠️ Setup and Installation
 
 ### Step 0: Initial Jetson Nano Setup
 
@@ -81,7 +83,7 @@ Use `--fp16` for FP16 precision or `--int8` for INT8 precision if you have a cal
 <br>
 
 
-## Dataset Preparation
+## 📦 Dataset Preparation
 
 The benchmarks run on a specific subset of the **COCO 2017 Validation** dataset to ensure consistent results. Due to its size, the dataset is not included in this repository.
 
@@ -105,7 +107,7 @@ To generate the exact dataset used:
 <br>
 
 
-## Running the Benchmarks
+## 📊 Running the Benchmarks
 
 Once the setup is complete, running the benchmarks is straightforward.
 
@@ -128,7 +130,7 @@ The scripts will print the average inference time and FPS to the console. Visual
 <br>
 
 
-## Monitoring Jetson Nano Performance
+## 🔬 Monitoring Jetson Nano Performance
 
 To understand the hardware load during benchmarking, you can monitor the device's status. Open a new terminal window and use these commands while a script is running.
 
