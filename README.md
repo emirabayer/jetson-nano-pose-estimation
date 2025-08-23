@@ -149,13 +149,16 @@ cat /sys/devices/virtual/thermal/thermal_zone0/temp
 ```
 
 #### Check Power Mode
-The Jetson Nano has a 5W mode (Mode 1) and a 10W mode (Mode 0, MAXN). For maximum performance, use 10W mode.
+The Jetson Nano has a 5W mode (Mode 1) and a 10W mode (Mode 0, MAXN). For maximum performance, use 10W mode and max clock speed.
 ```bash
 # Check current mode
 sudo nvpmodel -q
 
 # Set to 10W mode
 sudo nvpmodel -m 0
+
+# Set max clock speed
+sudo jetson_clocks
 ```
 
 #### Check CPU Clock Frequency
