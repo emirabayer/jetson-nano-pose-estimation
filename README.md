@@ -37,7 +37,10 @@ The primary focus is on evaluating models optimized with NVIDIA TensorRT, compar
 Before cloning this repository, ensure your Jetson Nano 2GB Developer Kit is properly set up. This includes flashing the OS, installing necessary system libraries (like `pip`), and connecting to the internet.
 
 For a fantastic, step-by-step guide from a fellow researcher at AIRLAB, please follow the instructions here:
-**➡️ [Jetson Nano Setup Guide by Ali Fırat](http://alifirat.xyz/jetson)**
+**➡[Jetson Nano Setup Guide by Ali Fırat](http://alifirat.xyz/jetson)**
+
+<br>
+<br>
 
 ### Step 1: Clone This Repository
 
@@ -47,6 +50,9 @@ Open a terminal on your Jetson Nano and clone this repository.
 git clone [https://github.com/emirabayer/jetson-nano-pose-estimation.git](https://github.com/emirabayer/jetson-nano-pose-estimation.git)
 cd jetson-nano-pose-estimation
 ```
+
+<br>
+<br>
 
 ### Step 2: Install Dependencies
 
@@ -60,6 +66,9 @@ sudo apt-get install -y python3-pip libopenjp2-7-dev libtiff-dev
 pip3 install -r requirements.txt
 ```
 
+<br>
+<br>
+
 ## Step 3: Prepare the Models
 
 The scripts use TensorRT `.engine` files for optimized inference. You need to generate these from `.onnx` files first.
@@ -70,95 +79,94 @@ The scripts use TensorRT `.engine` files for optimized inference. You need to ge
 ```bash
 trtexec --onnx=yolov8n-pose.onnx --saveEngine=yolov8n-pose_fp32.engine --fp16
 ```
-    * Use `--fp16` for FP16 precision or `--int8` for INT8 precision if you have a calibration dataset.
+Use `--fp16` for FP16 precision or `--int8` for INT8 precision if you have a calibration dataset.
 
 
 <br>
 <br>
 
 
-## Benchmarking Procedure
+## Dataset Preparation
 
-### - Step 1: Download the Model
+The benchmarks run on a specific subset of the **COCO 2017 Validation** dataset to ensure consistent results. Due to its size, the dataset is not included in this repository.
 
-Download the pre-converted ONNX model from this repository into the terminal.
+To generate the exact dataset used:
+1.  **Download COCO 2017:**
+    * Download the [2017 Val images](http://images.cocodataset.org/zips/val2017.zip) (1GB).
+    * Download the [2017 Train/Val annotations](http://images.cocodataset.org/annotations/annotations_trainval2017.zip) (241MB).
+2.  **Filter the Dataset:**
+    * Unzip both files.
+    * We need to create a subset containing only images with single-person keypoint annotations. You can use a script for this.
+    * The `person_keypoints_val2017.json` annotation file will be used to identify the relevant images.
+3.  **Organize Files:**
+    * Create a directory named `nano_benchmark_set` inside the `dataset/` folder.
+    * Copy the filtered images into this new directory.
+    * Ensure the `person_keypoints_val2017.json` file is placed in the root directory of the repository or update the path in the scripts.
+
+*(You should place your detailed script/instructions on how you created the dataset inside the `dataset/README.md` file).*
+
+<br>
+<br>
+
+## Running the Benchmarks
+
+Once the setup is complete, running the benchmarks is straightforward.
+
+### 1. Run the MoveNet Benchmark
 
 ```bash
-wget -O movenet_singlepose_lightning.onnx [https://raw.githubusercontent.com/emirabayer/movenet-jetson-benchmark/main/movenet_singlepose_lightning.onnx](https://raw.githubusercontent.com/emirabayer/movenet-jetson-benchmark/main/movenet_singlepose_lightning.onnx)
+python3 benchmarks/movenet_benchmark.py
 ```
 
-<br>
+### 2. Run the YOLOv8-Pose Benchmark
 
-<br>
-
-### - Step 2: Maximize Jetson Nano Performance
-
-To get stable and reliable benchmark results, you must first lock the Jetson Nano into its maximum performance state.
-
-1.  **Set 10W Power Mode:**
-    ```bash
-    sudo nvpmodel -m 0
-    ```
-
-2.  **Lock GPU and CPU Clocks:**
-    ```bash
-    sudo jetson_clocks
-    ```
-
-
-<br>
-
-<br>
-
-### - Step 3: Run the TensorRT Benchmarks
-
-We will use the `trtexec` command-line tool to convert the ONNX model into optimized TensorRT engines and measure their performance. This tool is included with JetPack.
-*If you get a `trtexec: command not found` error, run this command first to add it to your PATH:*
-`echo 'export PATH="$PATH:/usr/src/tensorrt/bin"' >> ~/.bashrc && source ~/.bashrc`
-
-<br>
-<br>
-
-1. **Benchmark FP32 Precision (Baseline):**
-    ```bash
-    trtexec --onnx=movenet_singlepose_lightning.onnx
-    ```
-
-2.  **Benchmark FP16 Precision (Optimized):**
-    ```bash
-    trtexec --onnx=movenet_singlepose_lightning.onnx --fp16
-    ```
-
-<br>
-
-<br>
-
-### - Step 4: Interpret the Results
-
-At the end of each `trtexec` run, look for the `=== Performance summary ===` section in the output. The most important number for stable performance is the **`median`** latency under **`GPU Compute Time`**.
-
+```bash
+python3 benchmarks/yolov8_pose_benchmark.py
 ```
-[I] === Performance summary ===
-[I] Throughput: 75.583 qps
-[I] Latency: min = 13.1934 ms, max = 23.805 ms, mean = 13.2303 ms, median = 13.2354 ms ...
-...
-[I] GPU Compute Time: min = 13.1445 ms, max = 23.588 ms, mean = 13.1879 ms, median = 13.1925 ms ...
+
+The scripts will print the average inference time and FPS to the console. Visualization images, comparing model predictions (red) against ground truth (green), will be saved in the respective `visualizations_*` directories.
+
+<br>
+<br>
+
+## Monitoring Jetson Nano Performance
+
+To understand the hardware load during benchmarking, you can monitor the device's status. Open a new terminal window and use these commands while a script is running.
+
+#### Check Temperature
+The GPU and CPU share a thermal zone. Values are in millidegrees Celsius (divide by 1000).
+```bash
+cat /sys/devices/virtual/thermal/thermal_zone0/temp
+```
+
+#### Check Power Mode
+The Jetson Nano has a 5W mode (Mode 1) and a 10W mode (Mode 0, MAXN). For maximum performance, use 10W mode.
+```bash
+# Check current mode
+sudo nvpmodel -q
+
+# Set to 10W mode
+sudo nvpmodel -m 0
+```
+
+#### Check CPU Clock Frequency
+See the current frequency of each CPU core.
+```bash
+cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_cur_freq
+```
+
+#### Check GPU Clock Frequency
+See the current frequency of the GPU.
+```bash
+sudo cat /sys/kernel/debug/clk/gpcclk/clk_rate
 ```
 
 <br>
 <br>
 
-* **Latency:** The `median` GPU Compute Time is your raw inference speed in milliseconds (e.g., **13.19 ms**).
-* **FPS:** To calculate the Frames Per Second, use the formula: `FPS = 1000 / median_latency`. (e.g., `1000 / 13.19 = ~75.8 FPS`).
 
-Compare the results from the FP32 and FP16 runs to quantify the performance gain from quantization.
+## Appendix: Decreasing The Size of COCO Validation Set
 
-
-<br>
-<br>
-
-## Decreasing The Size of COCO Validation Set
-
-The `trtexec` tool benchmarks performance using random data. The included `filter_coco.py` script is a utility to create a smaller, focused dataset from the full COCO 2017 validation set.
-Using it on the COCO dataset will create a new folder named `val2017_pose_only` containing only the images with person keypoint annotations, which is ideal for realistic benchmarking.
+In order to work with the images in the COCO dataset with pose keypoints already annotated, the official dataset needs to be shrinked.
+will create a new folder named `val2017_pose_only` containing only the images with person keypoint annotations.
 
