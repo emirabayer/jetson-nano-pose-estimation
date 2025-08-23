@@ -10,6 +10,9 @@ The primary focus is on evaluating models optimized with NVIDIA TensorRT, compar
 
 ![result_000000000785](https://github.com/user-attachments/assets/cfa74320-eb4b-47fc-b414-72d6bfbe694a)
 
+<img width="999" height="104" alt="image" src="https://github.com/user-attachments/assets/8913b5d7-1817-4a1e-902e-97506408edb9" />
+
+
 
 ## Features
 
