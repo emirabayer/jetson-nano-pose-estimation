@@ -77,9 +77,10 @@ echo 'export OPENBLAS_CORETYPE=ARMV8' >> ~/.bashrc && source ~/.bashrc
 The scripts use TensorRT `.engine` files for optimized inference. You need to generate these from `.onnx` files first.
 
 1.  Obtain the `.onnx` models for MoveNet and YOLOv8-Pose.
-2.  Use the `trtexec` command line tool (included with TensorRT on your Jetson) to convert them. For example:
+2.  Use the `trtexec` command line tool (included with TensorRT on your Jetson) to convert them.
 
 ```bash
+trtexec --onnx=movenet.onnx --saveEngine=movenet_fp16.engine --fp16
 trtexec --onnx=yolov8n-pose.onnx --saveEngine=yolov8n-pose_fp32.engine --fp16
 ```
 Use `--fp16` for FP16 precision or `--int8` for INT8 precision if you have a calibration dataset.
