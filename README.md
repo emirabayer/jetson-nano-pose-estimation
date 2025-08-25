@@ -147,7 +147,7 @@ To process a video with the One Euro Filter for smoother, less jittery keypoints
 ```bash
 python3 video_inference_movenet_oef.py
 ```
-_(Note: These scripts can be modified to accept command-line arguments for input/output paths for easier use.)_
+To increase the smoothness and reduce the vibrations (especially on the hands), lowering both the `min_cutoff` and `beta` values for the filter are necessary. Changing these values from the default `1.0` to `'min_cutoff': 0.4` and `'beta': 0.05` will make the filter more aggressive.
 
 <br>
 
