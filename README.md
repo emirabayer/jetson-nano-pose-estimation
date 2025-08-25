@@ -148,6 +148,7 @@ To process a video with the One Euro Filter for smoother, less jittery keypoints
 python3 video_inference_movenet_oef.py
 ```
 _(Note: These scripts can be modified to accept command-line arguments for input/output paths for easier use.)_
+
 <br>
 
 <br>
@@ -189,6 +190,7 @@ sudo cat /sys/kernel/debug/clk/gpcclk/clk_rate
 ```
 
 <br>
+
 <br>
 
 
