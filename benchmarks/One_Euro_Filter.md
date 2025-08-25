@@ -14,7 +14,7 @@ Here, `α` (alpha) is the smoothing factor. This leads to the fundamental proble
 * If `α` is **small** (strong smoothing), the filter is great at removing jitter when the point is still, but it will feel slow and **lag** behind when the point moves fast.
 * If `α` is **large** (weak smoothing), the filter is very responsive with low lag, but it will fail to remove jitter when the point is still.
 
----
+
 <br>
 
 <br>
@@ -39,7 +39,7 @@ Here is the internal architecture:
 
 **In short:** The filter uses a smoothed estimate of the signal's speed to continuously tune itself. When the speed is low, it smooths aggressively. When the speed is high, it automatically becomes more responsive.
 
----
+
 <br>
 
 <br>
