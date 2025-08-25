@@ -1,4 +1,12 @@
-# The One Euro Filter
+# Benchmarking
+
+This directory contains the primary executable scripts for the project. The `*_benchmark.py` files are used to evaluate model performance, measuring metrics like inference speed and accuracy on the COCO image dataset. The `video_inference_*.py` scripts serve as a practical demonstration, processing an entire video file to produce a new video with pose estimations overlaid. The `_oef` version of the video script additionally implements the One Euro Filter for temporal smoothing to reduce keypoint jitter.
+
+<br>
+
+<br>
+
+# Appendix: The One Euro Filter
 
 ## The Core Idea: Separating Signal from Noise 
 
