@@ -15,6 +15,10 @@ Here, `α` (alpha) is the smoothing factor. This leads to the fundamental proble
 * If `α` is **large** (weak smoothing), the filter is very responsive with low lag, but it will fail to remove jitter when the point is still.
 
 ---
+<br>
+
+<br>
+
 ## The One Euro Filter's Architecture: An Adaptive Solution
 
 The genius of the One Euro Filter is that it makes the smoothing factor `α` **adaptive**. It uses a second filter to measure the signal's speed and adjusts the smoothing in real-time.
@@ -36,6 +40,10 @@ Here is the internal architecture:
 **In short:** The filter uses a smoothed estimate of the signal's speed to continuously tune itself. When the speed is low, it smooths aggressively. When the speed is high, it automatically becomes more responsive.
 
 ---
+<br>
+
+<br>
+
 ## The Parameters for an Engineer
 
 * **`min_cutoff` (Hertz):** This is the baseline cutoff frequency for the main signal filter when the velocity is zero. A value of `1.0` means that when a keypoint is perfectly still, the filter will aggressively eliminate any jitter that oscillates faster than 1 time per second (1 Hz). **Lowering this value makes the filter more aggressive on static or slow-moving points.**
