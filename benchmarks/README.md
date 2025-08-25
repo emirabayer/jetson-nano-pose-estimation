@@ -6,13 +6,10 @@ This directory contains the primary executable scripts for the project. The `*_b
 <br>
 
 <br>
-<br>
 
-<br>
 
 # Appendix: The One Euro Filter
-<br>
-<br>
+
 
 ## The Core Idea: Separating Signal from Noise 
 
