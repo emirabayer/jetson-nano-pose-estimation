@@ -17,6 +17,7 @@ The primary focus is on evaluating models optimized with NVIDIA TensorRT, compar
 ## Features
 
 * Ready to run Python scripts for evaluating _.engine_ files for MoveNet (Single Pose) and Yolov8n-Pose.
+* Process `.mp4` files to generate an output video with pose predictions, including an optional One Euro Filter to smooth keypoint jitter between frames.
 * Includes easy to use commands to monitor the Jetson Nano's real time hardware status (temperature, power, clock speeds).
 * A detailed guide on how to generate the exact subset of the COCO 2017 dataset used for these benchmarks.
 * The structure is designed to easily accommodate new models and benchmark tests.
@@ -133,6 +134,20 @@ python3 benchmarks/yolov8_pose_benchmark.py
 
 The scripts will print the average inference time and FPS to the console. Visualization images, comparing model predictions (red) against ground truth (green), will be saved in the respective `visualizations_*` directories.
 
+### 3. Run Video Inference
+
+Beyond static images, you can process entire video files to produce an output video with pose estimations drawn on each frame.
+
+To process a video with raw, unfiltered keypoints:
+```bash
+python3 video_inference_movenet.py
+```
+
+To process a video with the One Euro Filter for smoother, less jittery keypoints:
+```bash
+python3 video_inference_movenet_oef.py
+```
+_(Note: These scripts can be modified to accept command-line arguments for input/output paths for easier use.)_
 <br>
 
 <br>
