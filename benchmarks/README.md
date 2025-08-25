@@ -1,3 +1,5 @@
+# The One Euro Filter
+
 ## The Core Idea: Separating Signal from Noise 
 
 At its heart, the filter treats your stream of keypoint coordinates as a signal composed of two parts:
