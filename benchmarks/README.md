@@ -13,7 +13,7 @@ This directory contains the primary executable scripts for the project. The `*_b
 
 ## The Core Idea: Separating Signal from Noise 
 
-At its heart, the filter treats your stream of keypoint coordinates as a signal composed of two parts:
+At its heart, the filter treats a stream of keypoint coordinates as a signal composed of two parts:
 
 * **The True Signal (Low Frequency):** The actual, intended movement of a person's hand or head. This is a relatively slow, smooth motion.
 * **The Noise (High Frequency):** The rapid, tiny, back-and-forth oscillations from the model's prediction uncertainty. This is the "jitter."
