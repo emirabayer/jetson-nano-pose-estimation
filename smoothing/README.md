@@ -5,9 +5,9 @@ Several techniques were used for smoothing the jittery output of the MoveNet sin
 ## Key Features
 
 The repository provides three distinct inference pipelines for comparison:
-* **`MoveNet`: (/benchmarks)** The baseline, unfiltered output from the TensorRT optimized MoveNet model.
-* **`MoveNet + One Euro Filter (OEF)`: (/benchmarks)** A classic signal processing filter applied to the keypoint data. It's fast and effective but requires manual tuning.
-* **`MoveNet + LSTM`: (/smoothing)** A custom trained Long Short-Term Memory (LSTM) network that learns the patterns of human motion from data to act as a smart, stateful filter.
+* **`MoveNet (/benchmarks)`: ** The baseline, unfiltered output from the TensorRT optimized MoveNet model.
+* **`MoveNet + One Euro Filter (OEF) (/benchmarks)`: ** A classic signal processing filter applied to the keypoint data. It's fast and effective but requires manual tuning.
+* **`MoveNet + LSTM (/smoothing)`: ** A custom trained Long Short-Term Memory (LSTM) network that learns the patterns of human motion from data to act as a smart, stateful filter.
 
 <br>
 <br>
