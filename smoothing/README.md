@@ -9,6 +9,9 @@ This repository provides three distinct inference pipelines for comparison:
 * **`MoveNet + One Euro Filter (OEF)`:** A classic signal processing filter applied to the keypoint data. It's fast and effective but requires manual tuning.
 * **`MoveNet + LSTM`:** A custom trained Long Short-Term Memory (LSTM) network that learns the patterns of human motion from data to act as a smart, stateful filter.
 
+<br>
+<br>
+
 ## Demo & Dataset
 
 A Google Drive folder containing the following can be found here: **[https://drive.google.com/drive/folders/1dSN_O2x4_8f7S8ZCVpMtBMJ9cQy8IGqF?usp=sharing]**
@@ -27,6 +30,9 @@ Follow these steps to set up the project and run the different inference pipelin
 * **Hardware:** NVIDIA Jetson Nano (2GB or 4GB model)
 * **Software:** NVIDIA JetPack 4.6 or later (includes TensorRT, CUDA, cuDNN)
 * **Environment:** A Conda environment with Python 3.10 is recommended for compatibility.
+
+<br>
+<br>
 
 ### 2. Setup & Installation
 
@@ -52,6 +58,9 @@ pip install numpy opencv-python
 pip install pycuda
 ```
 
+<br>
+<br>
+
 ### 3. Build TensorRT Engines
 This project requires two TensorRT engine files (.engine).
 
@@ -65,6 +74,9 @@ pip install numpy opencv-python
 # PyCUDA needs to be installed carefully on Jetson
 pip install pycuda
 ```
+
+<br>
+<br>
 
 ### 4. Training Your Own LSTM (Optional)
 
@@ -84,6 +96,9 @@ python train_lstm.py
 ```
 
 3. Copy the resulting `.onnx` file to your Jetson to build the engine as described above.
+
+<br>
+<br>
 
 ### 5. Running Inference With LSTM Smoother
 Run any of the following scripts on your Jetson Nano to see the results. Make sure your `.engine` files are in the same directory.
