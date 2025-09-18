@@ -36,13 +36,7 @@ Follow these steps to set up the project and run the different inference pipelin
 
 ### 2. Setup & Installation
 
-**A. Clone the Repository:**
-```bash
-git clone [https://github.com/emirabayer/jetson-nano-pose-estimation.git](https://github.com/emirabayer/jetson-nano-pose-estimation.git)
-cd jetson-nano-pose-estimation
-```
-
-**B. Create Conda Environment (Recommended):**
+**A. Create Conda Environment (Recommended):**
 ```bash
 # Create an environment with Python 3.10
 conda create --name pose_env python=3.10 -y
@@ -51,7 +45,7 @@ conda create --name pose_env python=3.10 -y
 conda activate pose_env
 ```
 
-**C. Install Dependencies:**
+**B. Install Dependencies:**
 ```bash
 pip install numpy opencv-python
 # PyCUDA needs to be installed carefully on Jetson
