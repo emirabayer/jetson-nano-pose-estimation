@@ -12,7 +12,7 @@ The repository provides three distinct inference pipelines for comparison:
 <br>
 <br>
 
-## Demo & Dataset
+## Custom Dataset & Outputs
 
 A Google Drive folder containing the following can be found here: **[https://drive.google.com/drive/folders/1dSN_O2x4_8f7S8ZCVpMtBMJ9cQy8IGqF?usp=sharing]**
 
